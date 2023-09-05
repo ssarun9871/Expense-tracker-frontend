@@ -1,4 +1,6 @@
-import ExpenseItem from "./components/ExpenseItem";
+import Card from "./components/UI/Card";
+import ExpenseItem from "./components/Expenses/ExpenseItem";
+import "./components/Expenses/Expenses.css"
 
 const expenses = [
   {
@@ -37,9 +39,9 @@ function App() {
   ));
 
   return (
-    <div>
+    <div >
       <h2>Let's get started!</h2>
-      {expenseItems}
+      <Card className='expenses'>{expenseItems}</Card>
     </div>
   );
 }
