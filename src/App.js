@@ -30,7 +30,7 @@ const expenses = [
 function App() {
   const expenseItems = expenses.map((element) => (
     <ExpenseItem
-      key={element.id}
+      id={element.id}
       title={element.title}
       amount={element.amount}
       date={element.date}
