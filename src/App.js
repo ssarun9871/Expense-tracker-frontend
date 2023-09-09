@@ -1,6 +1,7 @@
 import Card from "./components/UI/Card";
 import ExpenseItem from "./components/Expenses/ExpenseItem";
 import "./components/Expenses/Expenses.css"
+import NewForm from "./components/NewExpense/NewExpense";
 
 const expenses = [
   {
@@ -40,7 +41,7 @@ function App() {
 
   return (
     <div >
-      <h2>Let's get started!</h2>
+      <NewForm />
       <Card className='expenses'>{expenseItems}</Card>
     </div>
   );
