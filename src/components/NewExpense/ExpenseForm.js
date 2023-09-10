@@ -44,8 +44,19 @@ function ExpenseForm() {
     setEnteredAmount(event.target.value);
   };
 
+  const onSubmitHandler = (event) =>{
+    event.preventDefault();
+    const obj ={
+     title : enteredTitle,
+     amount: enteredAmount,
+     date : new Date(enteredDate)
+    }
+
+    console.log(JSON.stringify(obj));
+  }
+
   return (
-    <form>
+    <form onSubmit={onSubmitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label className="new-expense__control label">title</label>
@@ -61,15 +72,19 @@ function ExpenseForm() {
           <input
             className="new-expense__control input"
             type="date"
+            min ="2021-01-01"
+            max = "2023-12-20"
             onChange={dateChangeHandler}
           />
         </div>
 
         <div className="new-expense__control">
-          <label className="new-expense__control label">amount</label>
+          <label className="new-expense__control label" >amount</label>
           <input
             className="new-expense__control input"
             type="number"
+            min = '0.01'
+            step = '0.01'
             onChange={amountChangeHandler}
           />
         </div>
