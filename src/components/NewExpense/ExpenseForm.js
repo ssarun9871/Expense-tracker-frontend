@@ -1,39 +1,13 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
 
-function ExpenseForm() {
+function ExpenseForm(props) {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
-  /*
-  convert multiple state into single state
-  const [userInput, setUserInput] = useState({
-    enteredTitle: "",
-    enteredDate: "",
-    enteredAmount: "",
-  });
-  */
 
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
-
-    /*
-    approach to convert multiple state into single state
-
-    approach 1
-    setUserInput({
-      ...userInput,
-      enteredTitle: event.target.value,
-      });
-    };
-  
-    approach 2
-    setUserInput((prevState) => {
-      return { prevState, enteredTitle: event.target.value };
-    });
-    */
-
-    //note - between approach 2 and 3, always choose 3 becuase it prevState is always be the latest state snapshot
   };
 
   const dateChangeHandler = (event) => {
@@ -52,7 +26,10 @@ function ExpenseForm() {
      date : new Date(enteredDate)
     }
 
-    console.log(JSON.stringify(obj));
+    props.onSaveExpenseData(obj);
+    setEnteredTitle('');
+    setEnteredDate('');
+    setEnteredAmount('');
   }
 
   return (
@@ -63,6 +40,7 @@ function ExpenseForm() {
           <input
             className="new-expense__control input"
             type="text"
+            value={enteredTitle}
             onChange={titleChangeHandler}
           />
         </div>
@@ -72,6 +50,7 @@ function ExpenseForm() {
           <input
             className="new-expense__control input"
             type="date"
+            value={enteredDate}
             min ="2021-01-01"
             max = "2023-12-20"
             onChange={dateChangeHandler}
@@ -83,6 +62,7 @@ function ExpenseForm() {
           <input
             className="new-expense__control input"
             type="number"
+            value={enteredAmount}
             min = '0.01'
             step = '0.01'
             onChange={amountChangeHandler}
