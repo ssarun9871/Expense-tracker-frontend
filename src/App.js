@@ -26,15 +26,6 @@ function App() {
     setExpense((prevExpense) => [...prevExpense, newExpense]);
   };
 
-  const expenseItems = filteredExpense.map((element) => (
-    <ExpenseItem
-      id={element.id}
-      title={element.title}
-      amount={element.amount}
-      date={element.date}
-      location={element.location}
-    ></ExpenseItem>
-  ));
 
   return (
     <div>
@@ -44,7 +35,16 @@ function App() {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
-        {expenseItems}
+        {filteredExpense.map((element) => (
+          <ExpenseItem
+            id={element.id}
+            key={element.id}
+            title={element.title}
+            amount={element.amount}
+            date={element.date}
+            location={element.location}
+          ></ExpenseItem>
+        ))}
       </Card>
     </div>
   );
