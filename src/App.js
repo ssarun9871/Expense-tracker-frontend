@@ -1,10 +1,11 @@
 import Card from "./components/UI/Card";
-import ExpenseItem from "./components/Expenses/ExpenseItem";
+//import ExpenseItem from "./components/Expenses/ExpenseItem";
 import "./components/Expenses/Expenses.css";
 import NewForm from "./components/NewExpense/NewExpense";
 import expenses from "./components/Expenses/Expenses";
 import React, { useState } from "react";
 import ExpensesFilter from "./components/Expenses/ExpenseFilter";
+import ExpenseList from "./components/Expenses/ExpensesList";
 
 // const addExpenseHandler = (exp) => {
 //   console.log('APP.js');
@@ -18,7 +19,7 @@ function App() {
 
   const filterChangeHandler = selectedYear => {
     setFilteredYear(selectedYear);
-    setFilteredExpense(expense.filter(exp=>{return exp.date.getFullYear() ==selectedYear}))
+    setFilteredExpense(expense.filter(exp=>{return exp.date.getFullYear() === parseInt(selectedYear)}))
   };
 
 
@@ -35,16 +36,7 @@ function App() {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
-        {filteredExpense.map((element) => (
-          <ExpenseItem
-            id={element.id}
-            key={element.id}
-            title={element.title}
-            amount={element.amount}
-            date={element.date}
-            location={element.location}
-          ></ExpenseItem>
-        ))}
+        <ExpenseList items={filteredExpense} />
       </Card>
     </div>
   );
