@@ -9,7 +9,6 @@ const ExpenseList = (props) => {
  }
 
  else if(props.items.length===1){
-  console.log('inside thissssssssssss')
   return (
     <ul className='expenses-list'>
       {props.items.map((element) => (
